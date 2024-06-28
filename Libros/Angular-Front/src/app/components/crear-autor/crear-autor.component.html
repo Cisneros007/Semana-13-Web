@@ -1,0 +1,24 @@
+<div class="container mt-3">
+  <div class="submit-form">
+    <ng-container *ngIf="!submitted">
+      <form>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" required [(ngModel)]="autor.nombre" name="nombre" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" required [(ngModel)]="autor.apellido" name="apellido" autocomplete="off">
+        </div>
+
+        <button type="button" (click)="guardarAutor()" class="btn btn-success">Agregar</button>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="submitted">
+      <h4>¡El autor se ha agregado correctamente!</h4>
+      <button type="button" class="btn btn-secondary" (click)="nuevoAutor()">Agregar más autores</button>
+    </ng-container>
+  </div>
+</div>

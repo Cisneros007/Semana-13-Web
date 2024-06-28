@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Lista de Autores</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let autor of autores; let i = index"
+                [class.active]="i === currentIndex"
+                (click)="setActiveAutor(autor, i)">
+              <td>{{ i + 1 }}</td>
+              <td>{{ autor.nombre }}</td>
+              <td>{{ autor.apellido }}</td>
+              <td>
+                <a [routerLink]="['/editar-autor', autor.id]" class="badge badge-warning">Editar</a>
+              </td>
+            </tr>
+            <tr *ngIf="autores.length === 0">
+              <td colspan="4" class="text-center">No hay autores disponibles.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-3" *ngIf="currentAutor.nombre">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Detalles del Autor
+        </div>
+        <div class="card-body">
+          <div>
+            <label><strong>Nombre:</strong></label> {{ currentAutor.nombre }}
+          </div>
+          <div>
+            <label><strong>Apellido:</strong></label> {{ currentAutor.apellido }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-3" *ngIf="!currentAutor.nombre && autores.length > 0">
+    <div class="col-md-12">
+      <p class="text-center">Por favor, haz clic en un autor para ver detalles.</p>
+    </div>
+  </div>
+</div>
